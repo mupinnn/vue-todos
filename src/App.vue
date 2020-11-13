@@ -1,16 +1,27 @@
 <template>
   <div id="app">
     <Header />
+    <Todos />
+    <AddTodo />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header";
+import Todos from "./components/Todos";
+import AddTodo from "./components/AddTodo";
 
 export default {
   name: "App",
   components: {
-    Header
+    Header,
+    Todos,
+    AddTodo
+  },
+  data() {
+    return {
+      todos: localStorage.getItem("todos") || []
+    }
   }
 };
 </script>
