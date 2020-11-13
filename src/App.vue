@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Header />
-    <Todos />
+    <Todos
+      v-bind:todos="todos"
+      v-on:del-todo="deleteTodo"
+      v-on:check-todo="completeTodo"
+    />
     <AddTodo v-on:add-todo="addTodo" />
   </div>
 </template>
@@ -29,11 +33,24 @@ export default {
 
       // Add to localStorage
       localStorage.setItem("todos", JSON.stringify(this.todos));
+    },
+    completeTodo(id) {
+      const updatedTodo = this.todos.find(todo => todo.id === id);
+      updatedTodo.completed = !updatedTodo.completed;
+
+      // Update data in localStorage
+      localStorage.setItem("todos", JSON.stringify(this.todos));
+    },
+    deleteTodo(id) {
+      this.todos = this.todos.filter(todo => todo.id !== id);
+
+      // Update data in localStorage
+      localStorage.setItem("todos", JSON.stringify(this.todos));
     }
   },
   created() {
     // Get todos data from localStorage
-    this.todos = localStorage.getItem("todos") || [];
+    this.todos = JSON.parse(localStorage.getItem("todos")) || [];
   }
 };
 </script>

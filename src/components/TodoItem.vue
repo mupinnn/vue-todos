@@ -1,16 +1,27 @@
 <template>
-  <li class="todo-item">
-    <p>the quick brown fox jumps over the lazy dog.</p>
+  <li class="todo-item" v-bind:class="{ completed: todo.completed }">
+    <p v-bind:class="{ completed: todo.completed }">{{ todo.text }}</p>
     <span class="actions">
-      <button class="btn btn-actions check">&#10003;</button>
-      <button class="btn btn-actions delete">&#10005;</button>
+      <button
+        class="btn btn-actions check"
+        @click="$emit('check-todo', todo.id)"
+      >
+        &#10003;
+      </button>
+      <button
+        class="btn btn-actions delete"
+        @click="$emit('del-todo', todo.id)"
+      >
+        &#10005;
+      </button>
     </span>
   </li>
 </template>
 
 <script>
 export default {
-  name: "TodoItem"
+  name: "TodoItem",
+  props: ["todo"]
 };
 </script>
 
@@ -24,6 +35,10 @@ export default {
   cursor: pointer;
   transition: 0.2s all ease-in-out;
 
+  &.completed {
+    background: #1d232c;
+  }
+
   &:first-child {
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
@@ -34,6 +49,10 @@ export default {
     word-break: break-all;
     margin-bottom: 0.5rem;
     padding: 1rem;
+
+    &.completed {
+      text-decoration: line-through;
+    }
   }
 
   .actions {
