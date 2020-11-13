@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       todos: localStorage.getItem("todos") || []
-    }
+    };
   }
 };
 </script>
@@ -44,6 +44,18 @@ html {
     max-width: 480px;
     min-height: 100vh;
     padding: 2rem;
+  }
+
+  .btn {
+    background: none;
+    border: none;
+    color: #fff;
+    padding: 0;
+    font-size: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
   }
 }
 </style>

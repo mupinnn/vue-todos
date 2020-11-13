@@ -9,7 +9,7 @@
 <script>
 export default {
   name: "Header"
-}
+};
 </script>
 
 <style lang="scss">
@@ -18,6 +18,7 @@ export default {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  margin-bottom: 2rem;
 
   .logo {
     width: 200px;
