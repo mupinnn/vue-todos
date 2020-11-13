@@ -1,5 +1,7 @@
 # vue-todos
 
+A simple, beautiful todo-list app built with Vue & localStorage.
+
 ## Project setup
 ```
 yarn install
