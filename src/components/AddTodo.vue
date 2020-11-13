@@ -1,14 +1,43 @@
 <template>
-  <form>
-    <textarea name="text" rows="3" placeholder="What you want to do?">
+  <form @submit="addTodo">
+    <textarea
+      name="text"
+      rows="3"
+      placeholder="What you want to do?"
+      v-model="todoText"
+    >
     </textarea>
     <button type="submit" class="btn submit">Submit</button>
   </form>
 </template>
 
 <script>
+import { uuid } from "uuidv4";
+
 export default {
-  name: "AddTodo"
+  name: "AddTodo",
+  data() {
+    return {
+      todoText: ""
+    };
+  },
+  methods: {
+    addTodo(e) {
+      e.preventDefault();
+
+      const newTodo = {
+        id: uuid(),
+        text: this.todoText,
+        completed: false
+      };
+
+      // Send to parent
+      this.$emit("add-todo", newTodo);
+
+      // Reset input
+      this.todoText = "";
+    }
+  }
 };
 </script>
 

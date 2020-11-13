@@ -2,7 +2,7 @@
   <div id="app">
     <Header />
     <Todos />
-    <AddTodo />
+    <AddTodo v-on:add-todo="addTodo" />
   </div>
 </template>
 
@@ -20,8 +20,20 @@ export default {
   },
   data() {
     return {
-      todos: localStorage.getItem("todos") || []
+      todos: []
     };
+  },
+  methods: {
+    addTodo(newTodo) {
+      this.todos = [...this.todos, newTodo];
+
+      // Add to localStorage
+      localStorage.setItem("todos", JSON.stringify(this.todos));
+    }
+  },
+  created() {
+    // Get todos data from localStorage
+    this.todos = localStorage.getItem("todos") || [];
   }
 };
 </script>
