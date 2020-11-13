@@ -43,6 +43,7 @@ export default {
 
   .btn-actions {
     background: #1d232c;
+    transition: 0.3s all ease-in-out;
 
     &:hover {
       background: #15191f;
