@@ -31,11 +31,13 @@ export default {
         completed: false
       };
 
-      // Send to parent
-      this.$emit("add-todo", newTodo);
+      if (this.todoText !== "") {
+        // Send to parent
+        this.$emit("add-todo", newTodo);
 
-      // Reset input
-      this.todoText = "";
+        // Reset input
+        this.todoText = "";
+      }
     }
   }
 };
